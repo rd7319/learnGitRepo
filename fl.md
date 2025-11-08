@@ -2,16 +2,17 @@
 
 ```mermaid
 flowchart LR
-  Client[Client<br>(Web / Mobile / Postman)] -->|HTTP JSON| API[API<br>`IplEcommerce.API` (ASP.NET Core)]
+  Client["Client (Web / Mobile / Postman)"]
+      -->|HTTP JSON| API["API `IplEcommerce.API` (ASP.NET Core)"]
   API --> Controllers[Controllers]
-  Controllers -->|uses| UnitOfWork[`UnitOfWork` / `IUnitOfWork`]
-  UnitOfWork -->|coordinates| Repos[Repositories<br>(`GenericRepository`, `ProductRepository`, `CartRepository`, `OrderRepository`)]
-  Repos -->|EF Core| DbContext[`IplEcommerceDbContext` (EF Core)]
+  Controllers -->|uses| UnitOfWork["`UnitOfWork` / `IUnitOfWork`"]
+  UnitOfWork -->|coordinates| Repos["Repositories (`GenericRepository`, `ProductRepository`, `CartRepository`, `OrderRepository`)"]
+  Repos -->|EF Core| DbContext["`IplEcommerceDbContext` (EF Core)"]
   DbContext -->|SQL| SQL[(SQL Server)]
 
-  Domain[Domain Layer<br>(Entities, Enums, Interfaces)] --- Repos
-  Application[Application Layer<br>(DTOs)] --- API
-  Infrastructure[Infrastructure Layer<br>(EF, Repos, Migrations, Seeder)] --- DbContext
+  Domain["Domain Layer (Entities, Enums, Interfaces)"] --- Repos
+  Application["Application Layer (DTOs)"] --- API
+  Infrastructure["Infrastructure Layer (EF, Repos, Migrations, Seeder)"] --- DbContext
   API
 
 Key components (file pointers):
