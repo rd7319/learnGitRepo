@@ -33,18 +33,12 @@ Key components (file pointers):
   - Migrations & Seeder: `Migrations/`, `Data/DatabaseSeeder.cs`
 
 Data flow summary:
-- Client ? API controllers ? UnitOfWork ? repository calls ? EF Core (`IplEcommerceDbContext`) ? SQL Server.
+- Client -> API controllers -> UnitOfWork -> repository calls -> EF Core (`IplEcommerceDbContext`) -> SQL Server.
 - DTOs are used by controllers to return API payloads; domain entities live in Domain layer and are persisted by EF Core in Infrastructure.
 
 Important design points & notes:
 - Patterns used: Repository (generic + specific), Unit of Work, DTOs, Dependency Injection, (optionally) Mediator.
 - Concurrency: stock decrement is implemented using an atomic SQL UPDATE in `ProductRepository.TryDecrementStockAsync` to avoid oversell.
 - Performance considerations: prefer DTO projection (`Select` / `ProjectTo`) instead of materializing full entities; use `.AsNoTracking()` for read-only queries; batch `SaveChanges()` calls.
-
-Suggested next improvements (short):
-- Add endpoint idempotency for `CreateOrder` (Idempotency-Key) to prevent duplicate orders on retries.
-- Add caching for read-heavy data (franchises, product metadata) via `IMemoryCache` or Redis.
-- Introduce `RowVersion` for optimistic concurrency + retry as fallback.
-- Add automated integration test for concurrent order creation.
 
 (End of one?page architecture)
