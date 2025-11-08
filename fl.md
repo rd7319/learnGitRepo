@@ -2,18 +2,17 @@
 
 ```mermaid
 flowchart LR
-  Client["Client (Web / Mobile / Postman)"]
-      -->|HTTP JSON| API["API `IplEcommerce.API` (ASP.NET Core)"]
-  API --> Controllers[Controllers]
-  Controllers -->|uses| UnitOfWork["`UnitOfWork` / `IUnitOfWork`"]
-  UnitOfWork -->|coordinates| Repos["Repositories (`GenericRepository`, `ProductRepository`, `CartRepository`, `OrderRepository`)"]
-  Repos -->|EF Core| DbContext["`IplEcommerceDbContext` (EF Core)"]
-  DbContext -->|SQL| SQL[(SQL Server)]
+  Client["Client - Web / Mobile / Postman"] -->|HTTP JSON| API["API - IplEcommerce.API (ASP.NET Core)"]
+  API --> Controllers["Controllers"]
+  Controllers -->|uses| UnitOfWork["UnitOfWork / IUnitOfWork"]
+  UnitOfWork -->|coordinates| Repos["Repositories - GenericRepository, ProductRepository, CartRepository, OrderRepository"]
+  Repos -->|EF Core| DbContext["IplEcommerceDbContext - EF Core"]
+  DbContext -->|SQL| SQL["SQL Server"]
 
-  Domain["Domain Layer (Entities, Enums, Interfaces)"] --- Repos
-  Application["Application Layer (DTOs)"] --- API
-  Infrastructure["Infrastructure Layer (EF, Repos, Migrations, Seeder)"] --- DbContext
-  API
+  Domain["Domain Layer - Entities, Enums, Interfaces"] --- Repos
+  Application["Application Layer - DTOs"] --- API
+  Infrastructure["Infrastructure Layer - EF, Repos, Migrations, Seeder"] --- DbContext
+  API -.->|optional| Mediator["MediatR"]
 
 Key components (file pointers):
 
