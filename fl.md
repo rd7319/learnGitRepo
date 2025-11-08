@@ -13,7 +13,7 @@ flowchart LR
   Application["Application Layer - DTOs"] --- API
   Infrastructure["Infrastructure Layer - EF, Repos, Migrations, Seeder"] --- DbContext
   API
-
+```
 Key components (file pointers):
 
 - Presentation (API): `src/Presentation/IplEcommerce.API`
