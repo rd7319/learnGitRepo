@@ -1,6 +1,6 @@
 # IplEcommerce
 
-Lightweight e?commerce sample implemented with ASP.NET Core (.NET 8), EF Core, and a Repository + UnitOfWork architecture.
+Lightweight e-commerce sample implemented with ASP.NET Core (.NET 8), EF Core, and a Repository + UnitOfWork architecture.
 
 ## Project layout
 
