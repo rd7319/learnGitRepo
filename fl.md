@@ -12,7 +12,8 @@ flowchart LR
   Domain["Domain Layer - Entities, Enums, Interfaces"] --- Repos
   Application["Application Layer - DTOs"] --- API
   Infrastructure["Infrastructure Layer - EF, Repos, Migrations, Seeder"] --- DbContext
-  API -.->|optional| Mediator["MediatR"]
+  API
+
 Key components (file pointers):
 
 - Presentation (API): `src/Presentation/IplEcommerce.API`
